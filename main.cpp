@@ -5,6 +5,7 @@
 
 int main()
 {
-  testAscii("Cat :3 Dog");
+  //testAscii("Cat :3 Dog");
+  caeserCipher("Hello, World!", 10);
   return 0;
 }
