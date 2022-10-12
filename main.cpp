@@ -1,10 +1,10 @@
 #include <iostream>
-
+#include <cctype>
 
 #include "funcs.h"
 
 int main()
 {
-  testAscii("Hello I am testing this function");
+  testAscii("Cat :3 Dog");
   return 0;
 }
