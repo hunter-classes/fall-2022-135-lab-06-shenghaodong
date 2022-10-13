@@ -6,6 +6,7 @@
 int main()
 {
   //testAscii("Cat :3 Dog");
-  caeserCipher("Hello, World!", 10);
+  //encryptCaesar("Hello, World!", 10);
+  encryptVigenere("Hello, World", "cake");
   return 0;
 }
