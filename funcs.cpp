@@ -22,13 +22,28 @@ void caeserCipher(std::string asciiLine, int shiftVal){
     std::string userLine = asciiLine;
     for(int i = 0; i < asciiLine.size(); i++){
         bool isAlp = isalpha(userLine[i]);
+        int convert;
         if(isAlp == true){
-            int convert = userLine[i] + shiftVal;
-            if((int)UserLine[i] >= 65 && (int)UserLine[i]<=90){//Uppercase
+            convert = userLine[i] + shiftVal;
+            if((int)userLine[i] >= 65 && (int)userLine[i]<= 90){//Uppercase
+                if(convert > 90){
+                    convert = convert - 90 + 64;
+                    char newChar = convert;
+                    std::cout << newChar << " " << convert << std::endl;
+                }else{
+                    char newChar = convert;
+                    std::cout << newChar << " " << convert << std::endl;
+                }
 
-
-            }else if(){//Lowercase
-
+            }else if((int)userLine[i] >= 97 && (int)userLine[i]<= 122){//Lowercase
+                if(convert > 122){
+                    convert = convert - 122 + 96;
+                    char newChar = convert;
+                    std::cout << newChar << " " << convert << std::endl;
+                }else{
+                    char newChar = convert;
+                    std::cout << newChar << " " << convert << std::endl;
+                }
             }
 
         }else{
