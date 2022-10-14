@@ -13,43 +13,45 @@ void testAscii(std::string asciiLine){
     }
 }
 
-void encryptCaesar(std::string asciiLine, int shiftVal){
-    std::string userLine = asciiLine;
-    for(int i = 0; i < asciiLine.size(); i++){
+std::string encryptCaesar(std::string plaintext, int rshift){
+    std::string userLine = plaintext;
+    std::string returnVal;
+    for(int i = 0; i < plaintext.size(); i++){
         bool isAlp = isalpha(userLine[i]);
         int convert;
         if(isAlp == true){
-            convert = userLine[i] + shiftVal;
+            convert = userLine[i] + rshift;
             if((int)userLine[i] >= 65 && (int)userLine[i]<= 90){//Uppercase
                 if(convert > 90){
                     convert = convert - 90 + 64;
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }else{
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }
 
             }else if((int)userLine[i] >= 97 && (int)userLine[i]<= 122){//Lowercase
                 if(convert > 122){
                     convert = convert - 122 + 96;
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }else{
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }
             }
 
         }else{
-            std::cout << userLine.substr(i, 1) << std::endl;
+            returnVal += userLine.substr(i, 1);
         }
     }
-    std::cout << "\n";
+    return returnVal;
 }
 
-void encryptVigenere(std::string plaintext, std::string keyword){
+std::string encryptVigenere(std::string plaintext, std::string keyword){
     std::string userLine = plaintext;
+    std::string returnVal;
     int max = keyword.size();
     int keyCount = 0;
     int keywordNum;
@@ -67,10 +69,10 @@ void encryptVigenere(std::string plaintext, std::string keyword){
                 if(convert > 90){
                     convert = convert - 90 + 64;
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }else{
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }
 
             }else if((int)userLine[i] >= 97 && (int)userLine[i]<= 122){//Lowercase
@@ -83,23 +85,99 @@ void encryptVigenere(std::string plaintext, std::string keyword){
                 if(convert > 122){
                     convert = convert - 122 + 96;
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }else{
                     char newChar = convert;
-                    std::cout << newChar << " " << convert << std::endl;
+                    returnVal += newChar;
                 }
             }
         }else{
-            std::cout << userLine.substr(i, 1) << std::endl;
+            returnVal += userLine.substr(i, 1);
         }
     }
-    std::cout << "\n";
+    return returnVal;
 }
 
-void decryptCaesar(ciphertext, rshift){
-    
+std::string decryptCaesar(std::string ciphertext, int rshift){
+    std::string userLine = ciphertext;
+    std::string returnVal;
+    for(int i = 0; i < ciphertext.size(); i++){
+        bool isAlp = isalpha(userLine[i]);
+        int convert;
+        if(isAlp == true){
+            convert = userLine[i] - rshift;
+            if((int)userLine[i] >= 65 && (int)userLine[i]<= 90){//Uppercase
+                if(convert < 65){
+                    convert = convert + 90 - 64;
+                    char newChar = convert;
+                    returnVal += newChar;
+                }else{
+                    char newChar = convert;
+                    returnVal += newChar;
+                }
+
+            }else if((int)userLine[i] >= 97 && (int)userLine[i]<= 122){//Lowercase
+                if(convert < 97){
+                    convert = convert + 122 - 96;
+                    char newChar = convert;
+                    returnVal += newChar;
+                }else{
+                    char newChar = convert;
+                    returnVal += newChar;
+                }
+            }
+        }else{
+            returnVal += userLine.substr(i, 1);
+        }
+    }
+    return returnVal; 
 }
 
-void decryptVigenere(ciphertext, keyword){
-    
+std::string decryptVigenere(std::string ciphertext, std::string keyword){
+    std::string returnVal;
+    std::string userLine = ciphertext;
+    int max = keyword.size();
+    int keyCount = 0;
+    int keywordNum;
+    for(int i = 0; i < ciphertext.size(); i++){
+        bool isAlp = isalpha(userLine[i]);
+        int convert;
+        if(isAlp == true){
+            if(keyCount >= keyword.size()){
+                keyCount = 0;
+            }
+            if((int)userLine[i] >= 65 && (int)userLine[i]<= 90){//Uppercase
+                keywordNum = keyword[keyCount] - 97;
+                keyCount++;
+                convert = userLine[i] - keywordNum;
+                if(convert < 65){
+                    convert = convert + 90 - 64;
+                    char newChar = convert;
+                    returnVal += newChar;
+                }else{
+                    char newChar = convert;
+                    returnVal += newChar;
+                }
+
+            }else if((int)userLine[i] >= 97 && (int)userLine[i]<= 122){//Lowercase
+                if(keyCount >= keyword.size()){
+                    keyCount = 0;
+                }
+                keywordNum = keyword[keyCount] - 97;
+                keyCount++;
+                convert = userLine[i] - keywordNum;
+                if(convert < 97){
+                    convert = convert + 122 - 96;
+                    char newChar = convert;
+                    returnVal += newChar;
+                }else{
+                    char newChar = convert;
+                    returnVal += newChar;
+                }
+            }
+        }else{
+            returnVal += userLine.substr(i, 1);
+        }
+    }
+    return returnVal;
 }
