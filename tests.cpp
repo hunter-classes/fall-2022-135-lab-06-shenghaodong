@@ -18,7 +18,7 @@ TEST_CASE("Decrypt Caesar"){
     CHECK(decryptCaesar("Kxqwhu Froohjh", 3) == "Hunter College");
 }
 
-TEST_CASE("Decrypt Vignere"){
+TEST_CASE("Decrypt Vigenere"){
     CHECK(decryptVigenere("Zt qf iaqazno gfdil!", "rain") == "It is raining today!");
     CHECK(decryptVigenere("A heri lz ks ig dpith", "sleep") == "I want to go to sleep");
 }
